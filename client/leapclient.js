@@ -9,18 +9,17 @@ function convertVerticalMillimetersToScreenPercent(mm) {
 }
 
 var rangeX = 400;
-var rangeY = 150;
+var rangeY = 300;
 var offsetX = 200;
-var offsetY = 150;
+var offsetY = 120;
 
 function convertCoordinates(mmX, mmY) {
 
     var left = (mmX * -1) + offsetX;
-    var percentLeft = left / rangeX;
+    var percentLeft = (100 * (left / rangeX));
 
-    var top = (mmY - offsetY) * -1;
-    var bottom = offsetY + rangeY;
-    var percentTop = top / bottom;
+    var top = (mmY - offsetY);
+    var percentTop = 100 - (100 * (top / rangeY));
 
     return {x: percentLeft, y: percentTop};
 
@@ -41,6 +40,9 @@ Leap.loop(controllerOptions, function (frame) {
             var position = convertCoordinates(finger.tipPosition[0], finger.tipPosition[1]);
             // console.log(position);
             Session.set('pointerPosition', position);
+
+
+
             // console.log(finger.tipPosition);
         }
     }
