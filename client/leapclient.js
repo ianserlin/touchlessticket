@@ -25,7 +25,7 @@ Leap.loop(controllerOptions, function(frame) {
 			};
 			// console.log(position);
 			Session.set('pointerPosition', position);
-			// console.log(finger.tipPosition);
+			console.log(finger.tipPosition);
 		}
 	}
 })
