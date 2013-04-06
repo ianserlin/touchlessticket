@@ -1,5 +1,9 @@
 // METEOR
 
+ScreenWidth = screen.width;
+ScreenHeight = screen.height;
+
+
 Meteor.pages({
 	'/': { to: 'dashboard', as: 'root', nav: 'dashboard' }
 }
@@ -10,3 +14,7 @@ Meteor.pages({
 });
 
 Meteor.subscribe('allTickets');
+
+Meteor.startup(function(){
+
+});
