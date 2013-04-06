@@ -13,6 +13,9 @@ var rangeY = 300;
 var offsetX = 200;
 var offsetY = 120;
 
+var ScreenWidth = screen.width;
+var ScreenHeight = screen.height;
+
 function convertCoordinates(mmX, mmY) {
 
     var left = (mmX * -1) + offsetX;
@@ -22,7 +25,24 @@ function convertCoordinates(mmX, mmY) {
     var percentTop = 100 - (100 * (top / rangeY));
 
     return {x: percentLeft, y: percentTop};
+}
 
+function gestureDetected(gesture, position){
+    if(gesture){
+        // alert(gesture.type);
+        Session.set('gesture', gesture.type)
+        var hitTestPosition = {
+            x: (position.x / 100) * ScreenWidth
+            , y: (position.y / 100) * ScreenHeight
+        }
+        $('.ticket').each(function(index, element){
+            var $element = $(element);
+            $element.removeClass('selected');
+            if($element.hitTest(hitTestPosition.x, hitTestPosition.y)){
+                $element.addClass('selected');
+            }
+        });
+    }
 }
 
 
@@ -40,9 +60,9 @@ Leap.loop(controllerOptions, function (frame) {
             var position = convertCoordinates(finger.tipPosition[0], finger.tipPosition[1]);
             // console.log(position);
             Session.set('pointerPosition', position);
-
-
-
+            if(frame.gestures){
+                gestureDetected(frame.gestures[0], position);
+            }
             // console.log(finger.tipPosition);
         }
     }

@@ -14,3 +14,7 @@
     height: 200px;
     margin: 20px;
 }
+
+.selected {
+	background-color: #FF0 !important;
+}
