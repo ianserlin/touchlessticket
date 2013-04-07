@@ -1,0 +1,45 @@
+<template name="expedite">
+	<div class="expedite">
+		<div class="row tickets">
+			{{#each tickets}}
+				{{> expediteTicket}}
+			{{/each}}
+		</div>
+	</div>
+</template>
+
+<template name="expediteTicket">
+	<div class="ticket span3 alert {{expediteTicketClassFor status}} pull-left" data-ticket="{{_id}}">
+		<div class="row">
+			<div class="span6">
+				<h2>Table {{table}}</h2>
+				<small class="muted">{{server}}</small>
+			</div>
+			<div class="span6 text-right">
+				<h4>{{time createdAt}}</h4>
+				<span class="muted">{{timeAgoShort createdAt}}</span>
+			</div>
+		</div>
+		<hr class="dotted"/>
+		<div class="row">
+			<div class="span12">
+				<h5 class="muted">Guests: {{people}}</h5>
+			</div>
+			<ul class="list-unstyled items span12">
+				{{#each items}}
+					<li><h3>{{.}}</h3></li>
+				{{/each}}
+			</ul>
+		</div>
+		<hr class="dotted"/>
+		<div class="row">
+			<div class="span6">
+				<small class="muted">Check #{{orderNumber}}</small>
+			</div>
+			<div class="span6 text-right">
+				<span class="muted">{{toDate createdAt}}</span>
+			</div>
+		</div>
+		<br/>
+	</div>
+</template>

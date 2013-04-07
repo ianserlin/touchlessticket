@@ -2,10 +2,10 @@ Meteor.publish('allTickets', function(){
 	return Tickets.find({});
 });
 
-Meteor.startup(function(){
-	if(Tickets.find({}).count() == 0){
-		seed();
-	}
+Meteor.startup(function () {
+    // if (Tickets.find({}).count() == 0) {
+    //     seed();
+    // }
 })
 
 function seed(){
