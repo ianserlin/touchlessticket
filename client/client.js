@@ -4,15 +4,16 @@ ScreenWidth = screen.width;
 ScreenHeight = screen.height;
 
 function authorize(){
-	if(!!Meteor.userId){
-		this.redirect('/login');
+	if(Meteor.userId() == null){
+		this.redirect('/');
 	}
 }
 
 Meteor.pages({
-	'/': { to: 'dashboard', as: 'root', nav: 'dashboard', before: authorize }
+	'/': { to: 'home' }
+	, '/dashboard': { to: 'dashboard', before: authorize }
 	, '/front': { to: 'frontOfHouse', before: authorize }
-	, '/login': { to: 'login' }
+	, '*': { to: 'home' }
 }
 , {
 	defaults: {

@@ -1,6 +1,12 @@
 <template name="header">
 	<div class="navbar navbar-fixed-top">
 		<a class="navbar-brand" href="#">TouchlessTicket</a>
+		{{#if currentUser}}
+			<ul class="nav">
+				<li><a href="/dashboard">Expedite</a></li>
+				<li><a href="/front">Front of House</a></li>
+			</ul>
+		{{/if}}
 		<ul class="nav pull-right">
 			<li>{{loginButtons align="right"}}</li>
 		</ul>
