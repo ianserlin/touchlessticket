@@ -1,0 +1,8 @@
+<template name="frontTickets">
+	<h1>Current Tickets</h1>
+	<div class="frontTickets row">
+		{{#each tickets}}
+			{{> frontTicket}}
+		{{/each}}
+	</div>
+</template>

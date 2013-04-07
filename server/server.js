@@ -3,9 +3,9 @@ Meteor.publish('allTickets', function () {
 });
 
 Meteor.startup(function () {
-    if (Tickets.find({}).count() == 0) {
-        seed();
-    }
+    // if (Tickets.find({}).count() == 0) {
+    //     seed();
+    // }
 })
 
 function seed() {

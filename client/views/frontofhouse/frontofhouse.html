@@ -1,17 +1,71 @@
 <template name="frontOfHouse">
-	<form id="createTicket" class="form-horizontal">
+	<div class="row">
+		<div class="span8">
+			{{> frontTickets}}
+		</div>
+		<div class="span4">
+			{{> newTicketForm}}
+		</div>
+	</div>
+</template>
+
+<template name="newTicketForm">
+	<div class="hide">{{resetKey}}</div>
+	<div class="page-header">
+		<h1>New Ticket<br/><small>order in bitches</small></h1>
+	</div>
+	<form id="createTicket" action="#" class="form-horizontal">
 		<div class="control-group">
-			<label class="control-label">Table #</label>
+			<label class="control-label">Server</label>
 			<div class="controls">
-				<input type="text" name="table" placeholder="e.g. 42">
+				<input type="text" name="server" value="{{server}}" disabled>
 			</div>
 		</div>
 		<div class="control-group">
 			<label class="control-label">Table #</label>
 			<div class="controls">
-				<input type="text" name="table" placeholder="e.g. 42">
+				<select name="table">
+					<option value=""></value>
+					<option value="1">1</value>
+					<option value="2">2</value>
+					<option value="3">3</value>
+					<option value="4">4</value>
+					<option value="5">5</value>
+					<option value="6">6</value>
+					<option value="7">7</value>
+					<option value="8">8</value>
+					<option value="9">9</value>
+				</select>
 			</div>
+		</div>
+		<div class="control-group">
+			<label class="control-label">Number of People</label>
+			<div class="controls">
+				<input type="text" name="people" placeholder="e.g. 3">
+			</div>
+		</div>
+		<div class="orderItems">
+			{{> orderItem}}
+		</div>
+		<div class="form-actions text-right">
+			<button type="submit" class="btn btn-primary submit">Create Ticket</button>
+			<button type="button" class="btn cancel">Reset</button>
 		</div>
 	</form>
-	{{> allTickets}}
+</template>
+
+<template name="orderItem">
+	<div class="control-group">
+		<label class="control-label">Item</label>
+		<div class="controls">
+			<select class="item">
+				<option value=""></value>
+				<option value="Nachos Grande">Nachos Grande</value>
+				<option value="Churritos">Churritos</value>
+				<option value="Taco Salad">Taco Salad</value>
+				<option value="Wet Burrito">Wet Burrito</value>
+				<option value="Lisa Special">Lisa Special</value>
+			</select>
+		</div>
+	</div>
 </template>

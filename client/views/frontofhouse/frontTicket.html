@@ -1,0 +1,34 @@
+<template name="frontTicket">
+	<div class="ticket span5 alert alert-info pull-left">
+		<div class="row">
+			<div class="span6">
+				<h4>Table {{table}}</h4>
+				<small class="muted">{{server}}</small>
+			</div>
+			<div class="span6 text-right">
+				<h4>{{time createdAt}}</h4>
+				<span class="muted">{{timeAgo createdAt}}</span>
+			</div>
+		</div>
+		<hr class="dotted"/>
+		<div class="row">
+			<div class="span12">
+				<h5 class="muted">Guests: {{people}}</h5>
+			</div>
+			<ul class="list-unstyled items span12">
+				{{#each items}}
+					<li><h3>{{.}}</h3></li>
+				{{/each}}
+			</ul>
+		</div>
+		<hr class="dotted"/>
+		<div class="row">
+			<div class="span6">
+				<small class="muted">Check #{{orderNumber}}</small>
+			</div>
+			<div class="span6 text-right">
+				<span class="muted">{{toDate createdAt}}</span>
+			</div>
+		</div>
+	</div>
+</template>
