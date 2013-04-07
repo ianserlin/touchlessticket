@@ -1,5 +1,9 @@
 /* CSS declarations go here */
 
+body {
+    background-color: #0f0;;
+}
+
 #pointer {
     position: fixed;
     width: 40px;
@@ -10,11 +14,31 @@
 }
 
 #newTickets .ticket {
-    background: #acd7ff;
+    background: #ff0800;
     height: 200px;
     margin: 20px;
 }
 
 .selected {
-	background-color: #FF0 !important;
+    background-color: #ffd900 !important;
+}
+
+.finished {
+    background-color: #00ff1b !important;
+}
+
+.alert {
+    color: #00064e;
+}
+
+.almostSelected {
+    background-color: #00fff8 !important;
+     /*Firefox */
+    -moz-transition: all 1s ease-in;
+     /*WebKit */
+    -webkit-transition: all 1s ease-in;
+     /*Opera */
+    -o-transition: all 1s ease-in;
+     /*Standard */
+    transition: all 1s ease-in;
 }

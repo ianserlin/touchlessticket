@@ -1,7 +1,7 @@
 // METEOR
 
-ScreenWidth = screen.width;
-ScreenHeight = screen.height;
+screenWidth = screen.width;
+screenHeight = screen.height;
 
 
 Meteor.pages({
