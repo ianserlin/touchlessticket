@@ -45,9 +45,7 @@ selectTicket = function(element){
 						, completedAt: new Date()
 					}
 				}, function(err){
-					Meteor.setTimeout(function(){
-						$(element).addClass('alert-success animated pulse');
-					}, 500);
+					$('[data-ticket="'+_id+'"]').addClass('alert-success animated pulse');
 				});
 				break;
 		}
