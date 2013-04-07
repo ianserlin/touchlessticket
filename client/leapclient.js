@@ -6,30 +6,14 @@ var offsetY = 120;
 var motionTimeout = 350;
 var selectionTimeout = 500;
 
+var leapOptions = {};
+
 var screenWidth = screen.width;
 var screenHeight = screen.height;
 var timeout = new Date().getTime();
-var palmLocation = {};
 var position = {};
-var lastSelected;
 
-Leap.loop({}, function (frame) {
-    var hand = frame.hands[0];
-    if (hand) {
-        var fingers = hand.fingers.length;
-        if (new Date().getTime() - timeout > motionTimeout) {
-            Session.set('oldRadius', fingers);
-            timeout = new Date().getTime();
-            if (fingers < 2) {
-                var newPosition = convertCoordinates(palmLocation.x, palmLocation.y);
-                hit(newPosition);
-            }
-            palmLocation = {x: hand.palmPosition[0], y: hand.palmPosition[1]};
-        }
-        position = convertCoordinates(hand.palmPosition[0], hand.palmPosition[1]);
-        Session.set('pointerPosition', position);
-    }
-});
+var lastSelected;
 
 function convertCoordinates(mmX, mmY) {
     var left = (mmX) + offsetX;
@@ -39,32 +23,65 @@ function convertCoordinates(mmX, mmY) {
     return {x: percentLeft, y: percentTop};
 }
 
-function hit(position) {
-    Session.set('hitTestPosition', JSON.stringify(position));
+Leap.loop(leapOptions, function (frame) {
+
+    var handCount = frame.hands.length;
+
+    if (handCount == 1) {
+        $("#pointer").show();
+        $("#lion").hide();
+
+        var hand = frame.hands[0];
+        position = convertCoordinates(hand.palmPosition[0], hand.palmPosition[1]);
+        Session.set('pointerPosition', position);
+
+        if (new Date().getTime() - timeout > motionTimeout) {
+            var fingers = hand.fingers.length;
+            Session.set('fingers', fingers);
+            timeout = new Date().getTime();
+
+            if (fingers == 5) {
+                showExpediterOverview();
+            } else if (fingers < 2) {
+                hit(position);
+            } else {
+                hideExpediterOverview();
+            }
+        }
+    }
+
+    if (handCount == 2) {
+        $("#lion").show();
+    }
+    if (handCount == 0) {
+        $("#lion").hide();
+        hideExpediterOverview();
+        $("#pointer").hide();
+    }
+
+});
+
+function hit(newPosition) {
+    Session.set('hitTestPosition', JSON.stringify(newPosition));
     $('.ticket').each(function (index, element) {
         var $element = $(element);
         if ($element != lastSelected && $element.hitTest(
-            (position.x / 100) * screenWidth,
-            (position.y / 100) * screenHeight)) {
+            (newPosition.x / 100) * screenWidth,
+            (newPosition.y / 100) * screenHeight)) {
             $element.addClass('almostSelected');
             Meteor.setTimeout(function () {
                 if ($element != lastSelected && $element.hitTest(
                     (getPosition().x / 100) * screenWidth,
                     (getPosition().y / 100) * screenHeight)) {
-                    okActuallyDoIt($element);
+                    $('.ticket').removeClass('almostSelected');
+                    selectTicket($element);
+                    lastSelected = $element;
                 } else {
                     $element.removeClass('almostSelected');
                 }
             }, selectionTimeout);
         }
     });
-}
-
-function okActuallyDoIt(element) {
-    $('.ticket').removeClass('almostSelected');
-    //element.addClass('selected').removeClass('almostSelected');
-    selectTicket(element);
-    lastSelected = element;
 }
 
 function getPosition() {
