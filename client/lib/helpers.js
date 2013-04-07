@@ -16,6 +16,10 @@ Handlebars.registerHelper("timeAgo", function (d, options) {
 	return moment(d).fromNow();
 });
 
+Handlebars.registerHelper("timeAgoShort", function (d, options) {
+	return moment(d).fromNow(true);
+});
+
 Handlebars.registerHelper("toDate", function (d, options) {
 	return moment(d).format('M/D/YY');
 });
