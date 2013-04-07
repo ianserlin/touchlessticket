@@ -11,24 +11,77 @@
 </template>
 
 <template name="expediterOverview">
-	<div id="expediterOverview" class="container hide">
+	<div id="expediterOverview" class="container alert">
 		<div class="row">
-			<div class="span2">
-				<h4>Specials</h4>
-				<h2></h2>
+			<div class="span2 offset1">
+				<h3 class="muted">SPECIALS</h3>
+				<ol>
+					<li>Lisa Special</li>
+				<ol>
 			</div>
-			<div class="span8">
-				<h4>All Day By Station</h4>
-				<h2></h2>
+			<div class="span6 text-center">
+				<h4 class="muted">ALL DAY BY STATION</h4>
+				<div class="row well">
+					<div class="span4">
+						<h3>SALAD</h3>
+						<ul class="list-unstyled">
+							<li>Taco Salad</li>
+							<li>Garden</li>
+							<li>Sm. Caesar</li>
+						</ul>
+					</div>
+					<div class="span4">
+						<h3>LINE</h3>
+						<ul class="list-unstyled">
+							<li>Nacho Grande</li>
+							<li>Wet Burrito</li>
+						</ul>
+					</div>
+					<div class="span4">
+						<h3>FRY</h3>
+						<ul class="list-unstyled">
+							<li>Churritos</li>
+							<li>Churritos</li>
+							<li>Lisa Special</li>
+							<li>Lisa Special</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 			<div class="span2">
-				<h4>86&apos;d</h4>
-				<h2></h2>
+				<h3 class="muted">86&apos;D</h3>
+				<ol>
+					<li>Fish tacos</li>
+				<ol>
 			</div>
 		</div>
-		<div class="row">
+		<div class="row text-center">
+			<div class="span4">
+				<h1>1 minute</h1>
+				<h4>AVG TIME UNDER</h3>
+			</div>
+			<div class="span4">
+				<h1>5:15 min</h1>
+				<h4>AVG TIME</h3>
+			</div>
+			<div class="span4">
+				<h1>30 seconds</h1>
+				<h4>AVG TIME OVER</h3>
+			</div>
 		</div>
-		<div class="row">
+		<div class="row text-center">
+			<div class="span4">
+				<h1>$125</h1>
+				<h4>labor/hour</h4>
+			</div>			
+			<div class="span4">
+				<h1>$860</h1>
+				<h4>sales/hour</h4>
+			</div>
+			<div class="span4">
+				<h1>14%</h1>
+				<h4>labor/sales</h4>
+			</div>
 		</div>
 	</div>
 </template>
@@ -41,7 +94,7 @@
 </template>
 
 <template name="expediteTicket">
-	<div class="ticket span3 alert {{expediteTicketClassFor status}} pull-left" data-ticket="{{_id}}">
+	<div class="ticket span3 alert animated {{expediteTicketClassFor status}} pull-left" data-ticket="{{_id}}">
 		<div class="row">
 			<div class="span6">
 				<h2>Table {{table}}</h2>
@@ -52,12 +105,14 @@
 				<span class="muted small">{{timeAgoShort createdAt}}</span>
 			</div>
 		</div>
-		{{#if fired}}
-			<div class="text-center row">FIRED {{timeAgo firedAt}}</div>
-		{{/if}}
-		{{#if completed}}
-			<div class="text-center row">ORDER UP {{timeAgo completedAt}}</div>
-		{{/if}}
+		{{#isolate}}
+			{{#if fired}}
+				<div class="text-center row firedAt">FIRED {{firedAtAgo}}</div>
+			{{/if}}
+			{{#if completed}}
+				<div class="text-center row">ORDER UP {{completedAtAgo}}</div>
+			{{/if}}
+		{{/isolate}}
 		<hr class="dotted"/>
 		<div class="row">
 			<div class="span12">

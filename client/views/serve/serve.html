@@ -2,10 +2,25 @@
 	<div class="page-header">
 		<h1>Order Up Bitches!</h1>
 	</div>
-	<div class="done row">
-		{{#each tickets}}
-			{{> serveTicket}}
-		{{/each}}
+	<div class="row">
+		<div class="span9">
+			<div class="done row">
+				{{#each tickets}}
+					{{> serveTicket}}
+				{{/each}}
+			</div>
+		</div>
+		<div class="span3 serverExtras">
+			<h3>SPECIALS</h3>
+			<ol>
+				<li><h4>Lisa Special</h4></li>
+			</ol>
+			<hr class="dotted"/>
+			<h3>86&apos;D</h3>
+			<ol>
+				<li><h4>Fish tacos</h4></li>
+			</ol>
+		</div>
 	</div>
 </template>
 

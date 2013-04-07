@@ -20,6 +20,11 @@ Handlebars.registerHelper("timeAgoShort", function (d, options) {
 	return moment(d).fromNow(true);
 });
 
+Handlebars.registerHelper("duration", function (start, end, options) {
+	var duration = moment(end).diff(start);
+	return ((duration/1000) | 0) + ' secs';
+});
+
 Handlebars.registerHelper("toDate", function (d, options) {
 	return moment(d).format('M/D/YY');
 });

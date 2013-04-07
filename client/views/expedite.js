@@ -1,13 +1,15 @@
+var dangerThreshold = 60 * 1000;
+
 Template.expedite.tickets = function(){
 	return Tickets.find({ 
 			status: { $nin: [ TicketStatus.VOID, TicketStatus.SERVED ] }
 		}, { 
-			sort: [["status", "desc"], ["createdAt", "desc"]]
+			sort: { "createdAt": -1 }
 		});
 };
 
 Template.currentTime.currentTime = function(){
-	return moment(Session.get('currentTime')).format('dddd h:m:ss a');
+	return moment(Session.get('currentTime')).format('dddd h:mm:ss a');
 };
 
 Template.expediteTicket.events({
@@ -22,6 +24,33 @@ Template.expediteTicket.fired = function(){
 
 Template.expediteTicket.completed = function(){
 	return this.completedAt;
+};
+
+// Template.expediteTicket.dangerous = function(){
+// 	var currentTime = Session.get('currentTime')
+// 		danger = moment(currentTime).diff(this.firedAt) > dangerThreshold;
+// 	return danger ? 'wobble' : '';
+// };
+
+Template.expediteTicket.firedAtAgo = function(){
+	var duration = moment(Session.get('currentTime')).diff(this.firedAt) / 1000
+		, minutes = duration / 60 | 0
+		, seconds = (duration % 60 | 0)+"";
+	if(seconds.length == 1){
+		seconds = "0" + seconds;
+	}
+
+	return minutes + " min " + seconds + " secs";
+};
+
+Template.expediteTicket.completedAtAgo = function(){
+	var duration = moment(Session.get('currentTime')).diff(this.completedAt) / 1000
+		, minutes = duration / 60 | 0
+		, seconds = (duration % 60 | 0)+"";
+	if(seconds.length == 1){
+		seconds = "0" + seconds;
+	}
+	return minutes + " min " + seconds + " secs";
 };
 
 // GESTURE HOOKS
