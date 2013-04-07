@@ -82,6 +82,9 @@ selectTicket = function(element){
 				});
 				break;
 			case TicketStatus.FIRED:
+				if( moment(new Date()).diff(this.firedAt) < 5000){
+					break;
+				}
 				$(element).removeClass('alert-info animated pulse');
 				Tickets.update(ticket._id, {
 					$set: { 
