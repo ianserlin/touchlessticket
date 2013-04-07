@@ -45,7 +45,7 @@ Handlebars.registerHelper("ticketClassFor", function (status, options) {
 });
 
 Handlebars.registerHelper("expediteTicketClassFor", function (status, options) {
-	var cssClass = 'alert-info';
+	var cssClass = 'alert-danger';
 	switch(status){
 		case 'NEW':
 			cssClass = 'alert-danger';
