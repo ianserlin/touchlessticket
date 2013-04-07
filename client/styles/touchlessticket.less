@@ -1,35 +1,33 @@
 @import "bootstrap/bootstrap.lessimport";
 
+@state-warning-background: #fffeb7;
+
 body {
-	padding-top: 50px;
+  padding-top: 50px;
 }
 
 #pointer {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    background: rgba(255, 255, 0, 0.5);
-    border-radius: 20px;
-    z-index: 10000;
+  position: fixed;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 0, 0.5);
+  border-radius: 20px;
+  z-index: 10000;
 }
 
 #newTickets .ticket {
-    background: #acd7ff;
-    height: 200px;
-    margin: 20px;
-}
-
-.selected {
-	background-color: #FF0 !important;
+  background: #acd7ff;
+  height: 200px;
+  margin: 20px;
 }
 
 .home {
-	margin-top: 50px;
-	.btn {
-		height: 200px;
-		font-size: 80px;
-		line-height: 180px;
-	}
+  margin-top: 50px;
+  .btn {
+    height: 200px;
+    font-size: 80px;
+    line-height: 180px;
+  }
 }
 
 .done {
@@ -37,51 +35,33 @@ body {
 }
 
 .ticket {
-    margin-left: 10px;
-    .items {
-        margin-left: 15px;
-    }
-    a.done {
-        width: 90%;
-        height: 70px;
-        font-size: 30px;
-        line-height: 58px;
-    }
+  margin-left: 10px;
+  .items {
+    margin-left: 15px;
+  }
+  a.done {
+    width: 90%;
+    height: 70px;
+    font-size: 30px;
+    line-height: 58px;
+  }
 }
 
 .dotted {
-    border-bottom: 1px dashed #777;
+  border-bottom: 1px dashed #777;
 }
 
 .expedite {
-    .tickets {
-        margin-top: 10px;
-        height: 90%;
-        .ticket {
-        }
+  .tickets {
+    margin-top: 10px;
+    height: 90%;
+    .ticket {
     }
-}
-
-.selected {
-    background-color: #ffd900 !important;
-}
-
-.finished {
-    background-color: #00ff1b !important;
-}
-
-.alert {
-    color: #00064e;
+  }
 }
 
 .almostSelected {
-    background-color: #00fff8 !important;
-     /*Firefox */
-    -moz-transition: all 1s ease-in;
-     /*WebKit */
-    -webkit-transition: all 1s ease-in;
-     /*Opera */
-    -o-transition: all 1s ease-in;
-     /*Standard */
-    transition: all 1s ease-in;
+  background-color: #ffd7ab !important;
+  -webkit-transition: all .5s ease-in;
+  transition: all .5s ease-in;
 }

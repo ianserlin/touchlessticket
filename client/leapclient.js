@@ -3,25 +3,21 @@ var rangeY = 300;
 var offsetX = 200;
 var offsetY = 120;
 
+var motionTimeout = 350;
+var selectionTimeout = 500;
+
 var screenWidth = screen.width;
 var screenHeight = screen.height;
 var timeout = new Date().getTime();
 var palmLocation = {};
 var position = {};
-
-function convertCoordinates(mmX, mmY) {
-    var left = (mmX) + offsetX;
-    var percentLeft = (100 * (left / rangeX));
-    var top = (mmY - offsetY);
-    var percentTop = 100 - (100 * (top / rangeY));
-    return {x: percentLeft, y: percentTop};
-}
+var lastSelected;
 
 Leap.loop({}, function (frame) {
     var hand = frame.hands[0];
     if (hand) {
         var fingers = hand.fingers.length;
-        if (new Date().getTime() - timeout > 350) {
+        if (new Date().getTime() - timeout > motionTimeout) {
             Session.set('oldRadius', fingers);
             timeout = new Date().getTime();
             if (fingers < 2) {
@@ -35,11 +31,13 @@ Leap.loop({}, function (frame) {
     }
 });
 
-function getPosition() {
-    return position;
+function convertCoordinates(mmX, mmY) {
+    var left = (mmX) + offsetX;
+    var percentLeft = (100 * (left / rangeX));
+    var top = (mmY - offsetY);
+    var percentTop = 100 - (100 * (top / rangeY));
+    return {x: percentLeft, y: percentTop};
 }
-
-var lastSelected;
 
 function hit(position) {
     Session.set('hitTestPosition', JSON.stringify(position));
@@ -57,13 +55,18 @@ function hit(position) {
                 } else {
                     $element.removeClass('almostSelected');
                 }
-            }, 1000);
+            }, selectionTimeout);
         }
     });
 }
 
 function okActuallyDoIt(element) {
-    $('.ticket').removeClass('selected').removeClass('almostSelected');
-    element.addClass('selected').removeClass('almostSelected');
+    $('.ticket').removeClass('almostSelected');
+    //element.addClass('selected').removeClass('almostSelected');
+    selectTicket(element);
     lastSelected = element;
+}
+
+function getPosition() {
+    return position;
 }
