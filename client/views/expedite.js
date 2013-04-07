@@ -1,4 +1,4 @@
-var dangerThreshold = 60 * 1000;
+var dangerThreshold = 45 * 1000;
 
 Template.expedite.tickets = function(){
 	return Tickets.find({ 
@@ -19,18 +19,23 @@ Template.expediteTicket.events({
 });
 
 Template.expediteTicket.fired = function(){
-	return this.firedAt;
+	return this.firedAt && !(this.completedAt);
 };
 
 Template.expediteTicket.completed = function(){
 	return this.completedAt;
 };
 
-// Template.expediteTicket.dangerous = function(){
-// 	var currentTime = Session.get('currentTime')
-// 		danger = moment(currentTime).diff(this.firedAt) > dangerThreshold;
-// 	return danger ? 'wobble' : '';
-// };
+Template.expediteTicket.dangerous = function(){
+	var currentTime = Session.get('currentTime')
+		danger = (moment(currentTime).diff(this.firedAt) > dangerThreshold) && !(this.completedAt);
+	// var el = $('.'+this._id);
+	// debugger
+	// if(!el.hasClass('wobble')){
+	// 	el.addClass('wobble dangerous');
+	// }
+	return danger ? 'dangerous' : '';
+};
 
 Template.expediteTicket.firedAtAgo = function(){
 	var duration = moment(Session.get('currentTime')).diff(this.firedAt) / 1000

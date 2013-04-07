@@ -27,5 +27,11 @@ Meteor.subscribe('allTickets');
 Meteor.startup(function(){
 	Meteor.setInterval(function(){
 		Session.set('currentTime', new Date().getTime());
+		$('.expediteTicket').each(function(index, el){
+			var danger = $(el).find('.dangerous').length > 0;
+			if(danger){
+				$(el).addClass('animated tada');
+			}
+		});
 	}, 1000);
 });
