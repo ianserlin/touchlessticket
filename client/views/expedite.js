@@ -24,6 +24,16 @@ Template.expediteTicket.completed = function(){
 	return this.completedAt;
 };
 
+// GESTURE HOOKS
+
+showExpediterOverview = function(){
+	$('#expediterOverview').removeClass('hide animated bounceOutUp').addClass('animated bounceInDown');
+};
+
+hideExpediterOverview = function(){
+	$('#expediterOverview').removeClass('animated bounceInDown').addClass('animated bounceOutUp');
+};
+
 selectTicket = function(element){
 	var _id = $(element).data('ticket')
 		, ticket = Tickets.findOne({_id: _id});
