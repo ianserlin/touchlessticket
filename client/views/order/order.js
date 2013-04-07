@@ -6,6 +6,10 @@ function getUserEmail(){
 	return email;
 }
 
+Template.order.tickets = function(){
+	return Tickets.find({ status: { $nin: [ TicketStatus.VOID ] }});
+}
+
 Template.newTicketForm.server = function(){
 	return getUserEmail();
 };

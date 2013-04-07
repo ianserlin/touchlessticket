@@ -11,9 +11,9 @@ function authorize(){
 
 Meteor.pages({
 	'/': { to: 'home' }
-	, '/dashboard': { to: 'dashboard', before: authorize }
-	, '/front': { to: 'frontOfHouse', before: authorize }
-	, '/done': { to: 'done', before: authorize }
+	, '/expedite': { to: 'expedite', before: authorize }
+	, '/order': { to: 'order', before: authorize }
+	, '/serve': { to: 'serve', before: authorize }
 	, '*': { to: 'home' }
 }
 , {

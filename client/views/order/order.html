@@ -1,7 +1,12 @@
-<template name="frontOfHouse">
+<template name="order">
 	<div class="row">
 		<div class="span8">
-			{{> frontTickets}}
+			<h1>Current Tickets</h1>
+			<div class="orderTickets row">
+				{{#each tickets}}
+					{{> orderTicket}}
+				{{/each}}
+			</div>
 		</div>
 		<div class="span4">
 			{{> newTicketForm}}
