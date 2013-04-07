@@ -6,8 +6,7 @@ var offsetY = 120;
 var motionTimeout = 350;
 var selectionTimeout = 500;
 
-//var leapOptions = {};
-var leapOptions = {enableGestures: true};
+var leapOptions = {};
 
 var screenWidth = screen.width;
 var screenHeight = screen.height;
