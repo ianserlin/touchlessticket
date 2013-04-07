@@ -1,8 +1,10 @@
 <template name="expedite">
-	<div class="row fullscreen">
-		{{#each tickets}}
-			{{> expediteTicket}}
-		{{/each}}
+	<div class="expedite">
+		<div class="row tickets">
+			{{#each tickets}}
+				{{> expediteTicket}}
+			{{/each}}
+		</div>
 	</div>
 </template>
 

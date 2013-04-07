@@ -4,7 +4,11 @@ Template.serve.tickets = function(){
 
 Template.serveTicket.events({
 	'click .done': function(e, tmpl){
-		Tickets.update(this._id, { $set: { status: TicketStatus.SERVED } });
+		$(e.currentTarget).parents('.ticket').addClass('animated rollOut');
+		var self = this;
+		Meteor.setTimeout(function(){
+			Tickets.update(self._id, { $set: { status: TicketStatus.SERVED } });
+		}, 1200);
 		return false;
 	}
 });

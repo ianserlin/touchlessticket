@@ -1,5 +1,5 @@
 <template name="orderTicket">
-	<div class="ticket span5 alert alert-info pull-left">
+	<div class="ticket span5 alert {{ticketClassFor status}} pull-left animated pulse">
 		<div class="row">
 			<div class="span6">
 				<h4>Table {{table}}</h4>
@@ -29,6 +29,9 @@
 			<div class="span6 text-right">
 				<span class="muted">{{toDate createdAt}}</span>
 			</div>
+		</div>
+		<div class="row text-center">
+			<h2>{{status}}</h2>
 		</div>
 	</div>
 </template>

@@ -7,7 +7,7 @@ function getUserEmail(){
 }
 
 Template.order.tickets = function(){
-	return Tickets.find({ status: { $nin: [ TicketStatus.VOID ] }});
+	return Tickets.find({ status: { $nin: [ TicketStatus.VOID, TicketStatus.SERVED ] }}, { sort: { createdAt: -1}});
 }
 
 Template.newTicketForm.server = function(){
