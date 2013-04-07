@@ -9,7 +9,7 @@
 </template>
 
 <template name="expediteTicket">
-	<div class="ticket span5 alert alert-success pull-left">
+	<div class="ticket span4 alert {{expediteTicketClassFor status}} pull-left">
 		<div class="row">
 			<div class="span6">
 				<h2>Table {{table}}</h2>
@@ -41,8 +41,5 @@
 			</div>
 		</div>
 		<br/>
-		<div class="row text-center">
-			<a href='#' class="btn btn-warning btn-huge done">DONE</a>
-		</div>
 	</div>
 </template>

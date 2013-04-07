@@ -44,7 +44,7 @@ Handlebars.registerHelper("expediteTicketClassFor", function (status, options) {
 	var cssClass = 'alert-info';
 	switch(status){
 		case 'NEW':
-			cssClass = 'alert-info';
+			cssClass = 'alert-danger';
 			break;
 		case 'FIRED':
 		case 'SERVED':
