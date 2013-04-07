@@ -6,6 +6,7 @@
 preserve-inputs
 mini-pages
 less
-accounts-password
+accounts-facebook
 accounts-ui
 moment
+appcache

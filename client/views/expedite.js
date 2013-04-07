@@ -6,21 +6,36 @@ Template.expedite.tickets = function(){
 		});
 };
 
+Template.currentTime.currentTime = function(){
+	return moment(Session.get('currentTime')).format('dddd h:m:ss a');
+};
+
+Template.expediteTicket.events({
+	'click .ticket': function(e, tmpl){
+		selectTicket(e.currentTarget);
+	}
+});
+
+Template.expediteTicket.fired = function(){
+	return this.firedAt;
+};
+
 selectTicket = function(element){
 	var _id = $(element).data('ticket')
 		, ticket = Tickets.findOne({_id: _id});
 	if(ticket){
 		switch(ticket.status){
 			case TicketStatus.NEW:
-				Tickets.update(ticket._id, {$set: { status: TicketStatus.FIRED }}, function(){
+				Tickets.update(ticket._id, {$set: { 
+					status: TicketStatus.FIRED
+					, firedAt: new Date()
+				}}, function(){
 					$('[data-ticket="'+_id+'"]').addClass('animated pulse');
 				});
 				break;
 			case TicketStatus.FIRED:
-				$(element).removeClass('alert-info').addClass('animated fadeOut alert-success');
-				Meteor.setTimeout(function(){
-					Tickets.update(ticket._id, {$set: { status: TicketStatus.COMPLETED }});
-				}, 1500);
+				$(element).removeClass('alert-info').addClass('alert-success');
+				Tickets.update(ticket._id, {$set: { status: TicketStatus.COMPLETED }});
 				break;
 		}
 	}

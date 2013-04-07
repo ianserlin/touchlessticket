@@ -11,7 +11,7 @@ function authorize(){
 
 Meteor.pages({
 	'/': { to: 'home' }
-	, '/expedite': { to: 'expedite', before: authorize }
+	, '/expedite': { to: 'expedite', before: authorize, layout: 'expediteLayout' }
 	, '/order': { to: 'order', before: authorize }
 	, '/serve': { to: 'serve', before: authorize }
 	, '*': { to: 'home' }
@@ -25,5 +25,7 @@ Meteor.pages({
 Meteor.subscribe('allTickets');
 
 Meteor.startup(function(){
-
+	Meteor.setInterval(function(){
+		Session.set('currentTime', new Date().getTime());
+	}, 1000);
 });

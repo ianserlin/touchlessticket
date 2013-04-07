@@ -48,7 +48,7 @@ Template.newTicketForm.events({
 			}
 		});
 		if(emptySelects == 0){
-			$('.orderItems').prepend(Template.orderItem());
+			$('.orderItems').append(Template.orderItem());
 		}
 	}
 });
