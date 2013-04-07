@@ -4,7 +4,7 @@ Template.serve.tickets = function(){
 
 Template.serveTicket.events({
 	'click .done': function(e, tmpl){
-		$(e.currentTarget).parents('.ticket').addClass('animated rollOut');
+		$(e.currentTarget).parents('.ticket').addClass('animated bounceOutLeft');
 		var self = this;
 		Meteor.setTimeout(function(){
 			Tickets.update(self._id, { $set: { status: TicketStatus.SERVED } });

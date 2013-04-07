@@ -1,6 +1,6 @@
 Template.expedite.tickets = function(){
 	return Tickets.find({ 
-			status: { $nin: [ TicketStatus.VOID, TicketStatus.SERVED, TicketStatus.COMPLETED ] }
+			status: { $nin: [ TicketStatus.VOID, TicketStatus.SERVED ] }
 		}, { 
 			sort: [["status", "desc"], ["createdAt", "desc"]]
 		});
@@ -20,6 +20,10 @@ Template.expediteTicket.fired = function(){
 	return this.firedAt;
 };
 
+Template.expediteTicket.completed = function(){
+	return this.completedAt;
+};
+
 selectTicket = function(element){
 	var _id = $(element).data('ticket')
 		, ticket = Tickets.findOne({_id: _id});
@@ -34,8 +38,17 @@ selectTicket = function(element){
 				});
 				break;
 			case TicketStatus.FIRED:
-				$(element).removeClass('alert-info').addClass('alert-success');
-				Tickets.update(ticket._id, {$set: { status: TicketStatus.COMPLETED }});
+				$(element).removeClass('alert-info animated pulse');
+				Tickets.update(ticket._id, {
+					$set: { 
+						status: TicketStatus.COMPLETED 
+						, completedAt: new Date()
+					}
+				}, function(err){
+					Meteor.setTimeout(function(){
+						$(element).addClass('alert-success animated pulse');
+					}, 500);
+				});
 				break;
 		}
 	}

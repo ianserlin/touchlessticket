@@ -10,8 +10,9 @@
 </template>
 
 <template name="currentTime">
-	<div class="row text-right">
-		<h1>{{currentTime}}</h1>
+	<div class="row">
+		<h1 class="pull-left"><a href='/' class='muted'>TouchlessTicket</a></h1>
+		<h1 class="pull-right">{{currentTime}}</h1>
 	</div>
 </template>
 
@@ -29,6 +30,9 @@
 		</div>
 		{{#if fired}}
 			<div class="text-center row">FIRED {{timeAgo firedAt}}</div>
+		{{/if}}
+		{{#if completed}}
+			<div class="text-center row">ORDER UP {{timeAgo completedAt}}</div>
 		{{/if}}
 		<hr class="dotted"/>
 		<div class="row">
