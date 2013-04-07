@@ -30,6 +30,7 @@ Leap.loop(leapOptions, function (frame) {
 
     if (handCount == 1) {
         $("#pointer").show();
+        $("#lion").hide();
 
         var hand = frame.hands[0];
         position = convertCoordinates(hand.palmPosition[0], hand.palmPosition[1]);
@@ -51,9 +52,10 @@ Leap.loop(leapOptions, function (frame) {
     }
 
     if (handCount == 2) {
-        //showExpediterOverview();
+        $("#lion").show();
     }
     if (handCount == 0) {
+        $("#lion").hide();
         hideExpediterOverview();
         $("#pointer").hide();
     }
