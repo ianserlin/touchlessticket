@@ -28,7 +28,7 @@ Meteor.startup(function(){
 	Meteor.setInterval(function(){
 		var currentTime = new Date().getTime();
 		Tickets.find({ status: TicketStatus.FIRED }).forEach(function(ticket){
-			var danger = ticket.firedAt && (moment(currentTime).diff(ticket.firedAt) > 15000) && !(ticket.completedAt);
+			var danger = ticket.firedAt && (moment(currentTime).diff(ticket.firedAt) > 60000) && !(ticket.completedAt);
 			if(danger){
 				Tickets.update(ticket._id, {$set: { overdue: true }});
 			}
