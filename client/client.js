@@ -26,12 +26,13 @@ Meteor.subscribe('allTickets');
 
 Meteor.startup(function(){
 	Meteor.setInterval(function(){
-		Session.set('currentTime', new Date().getTime());
-		$('.expediteTicket').each(function(index, el){
-			var danger = $(el).find('.dangerous').length > 0;
+		var currentTime = new Date().getTime();
+		Tickets.find({ status: TicketStatus.FIRED }).forEach(function(ticket){
+			var danger = ticket.firedAt && (moment(currentTime).diff(ticket.firedAt) > 15000) && !(ticket.completedAt);
 			if(danger){
-				$(el).addClass('animated tada');
+				Tickets.update(ticket._id, {$set: { overdue: true }});
 			}
 		});
+		Session.set('currentTime', currentTime);
 	}, 1000);
 });

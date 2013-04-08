@@ -94,7 +94,7 @@
 </template>
 
 <template name="expediteTicket">
-	<div class="ticket span3 alert animated expediteTicket {{expediteTicketClassFor status}} pull-left {{_id}}" data-ticket="{{_id}}">
+	<div class="ticket span3 alert animated expediteTicket {{expediteTicketClassFor status overdue}} pull-left {{_id}}" data-ticket="{{_id}}">
 		<div class="row">
 			<div class="span6">
 				<h2>Table {{table}}</h2>
@@ -107,7 +107,7 @@
 		</div>
 		{{#isolate}}
 			{{#if fired}}
-				<div class="row firedAt {{dangerous}}">
+				<div class="row firedAt">
 					<div class="span12">
 						FIRED {{firedAtAgo}}
 					</div>

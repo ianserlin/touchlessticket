@@ -1,4 +1,4 @@
-var dangerThreshold = 45 * 1000;
+var dangerThreshold = 15 * 1000;
 
 Template.expedite.tickets = function(){
 	return Tickets.find({ 
@@ -45,7 +45,7 @@ Template.expediteTicket.firedAtAgo = function(){
 		seconds = "0" + seconds;
 	}
 
-	return minutes + " min " + seconds + " secs";
+	return minutes + " min " + seconds + " secs ago";
 };
 
 Template.expediteTicket.completedAtAgo = function(){
@@ -82,7 +82,7 @@ selectTicket = function(element){
 				});
 				break;
 			case TicketStatus.FIRED:
-				if( moment(new Date()).diff(this.firedAt) < 5000){
+				if( moment(new Date()).diff(ticket.firedAt) < 5000){
 					break;
 				}
 				$(element).removeClass('alert-info animated pulse');

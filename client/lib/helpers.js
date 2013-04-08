@@ -49,7 +49,7 @@ Handlebars.registerHelper("ticketClassFor", function (status, options) {
 	return cssClass;
 });
 
-Handlebars.registerHelper("expediteTicketClassFor", function (status, options) {
+Handlebars.registerHelper("expediteTicketClassFor", function (status, overdue, options) {
 	var cssClass = 'alert-danger';
 	switch(status){
 		case 'NEW':
@@ -65,6 +65,9 @@ Handlebars.registerHelper("expediteTicketClassFor", function (status, options) {
 		case 'VOID':
 			cssClass = 'alert-warning';
 			break;
+	}
+	if(status == 'FIRED' && overdue === true){
+		cssClass += ' animated tada';
 	}
 	return cssClass;
 });
