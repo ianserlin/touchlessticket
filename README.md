@@ -2,7 +2,7 @@
 
 Prototype of a Touchless Restaurant Ticketing System for Expediters
 
-See the HackerLeague description of the project here: https://www.hackerleague.org/hackathons/food-hackathon/hacks/touchless-ticket
+See the [HackerLeague description](https://www.hackerleague.org/hackathons/food-hackathon/hacks/touchless-ticket) of the project for marketing speak ;)
 
 MADE IN 30 HOURS DURING THE 1ST [#FOODHACKATHON](http://twitter.com/foodhackathon) April 6th-7th, 2013.
 http://foodhackathon.com Come to the next one!
